@@ -1,0 +1,26 @@
+http:
+  port: 8080
+  ratelimit_timeout: 5s
+  ratelimit_max_requests: 50
+db:
+   url: "postgresql://admin:root@127.0.0.1:5432/postgres?sslmode=disable"
+  # for docker
+  # url: "postgresql://admin:root@host.docker.internal:5432/postgres?sslmode=disable"
+senders:
+  sms: sinch
+  email: mailgun
+  slack: slack
+mailgun:
+  domain: "sandbox.mailgun.org"
+  from: "test@sandbox.mailgun."
+  private_key: "3691f9c-c79a5f1d"
+sinch:
+  from: "447520652379"
+  service_plan_id: "d40f4b4"
+  api_key: "fa6a3e1c2"
+slack:
+  token: "xoxb-6720009989872"
+notification_max_attempts: 3
+notification_listen_ticker: 5s
+auth:
+  api_key: "randomkey1234"

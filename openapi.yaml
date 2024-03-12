@@ -1,0 +1,95 @@
+openapi: 3.0.0
+info:
+  title: Notifications
+  version: 1.0.0
+paths:
+  /notifications:
+    post:
+      summary: Send a notification
+      description: Send a notification to a recipient
+      tags:
+        - Notifications
+      parameters:
+        - name: AUTH_TOKEN
+          in: header
+          description: ApiKeyToken
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                identifier:
+                  type: string
+                  description: The identifier of the recipient. For SMS, this is the phone number. For Email, this is the email address. For Slack, this is the Slack username or channel
+                  example: "test@email.com"
+                message:
+                  type: string
+                  description: The message to be sent
+                  example: "Hello, this is a test message"
+                subject:
+                  type: string
+                  description: Currently only used for Email
+                  example: "Test Subject"
+                type:
+                  type: integer
+                  description: 1 - SMS, 2 - Email, 3 - Slack
+                  example: 1
+                  
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "ok"
+                  msg:
+                    type: string
+                    example: ""
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Field: identifier"
+                  code:
+                    type: string
+                    example: "400"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "invalid token"
+                  code:
+                    type: string
+                    example: "401"
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "limit reached"
+                  code:
+                    type: string
+                    example: "429"

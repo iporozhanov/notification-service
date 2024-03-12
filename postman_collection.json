@@ -1,0 +1,44 @@
+{
+	"info": {
+		"_postman_id": "ec9ff116-edf9-4920-8977-029dd5383d01",
+		"name": "Notifications",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12458787"
+	},
+	"item": [
+		{
+			"name": "NewNotification",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "AUTH_TOKEN",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identifier\":\"U06L2KFUMRD\",\n    \"subject\":\"Test Subject\",\n    \"message\": \"Hello, this is a test message\",\n    \"type\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/notifications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"notifications"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
